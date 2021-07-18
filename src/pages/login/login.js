@@ -17,7 +17,7 @@ export default function Login() {
       setForm(prev => ({ ...prev, [key]: value }))
    }
 
-   const getUserQuery = useQuery({
+   const getUsersQuery = useQuery({
       gql: getUsersGql,
       initData: [],
       cache: true
