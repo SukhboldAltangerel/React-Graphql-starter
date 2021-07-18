@@ -1,0 +1,62 @@
+@value utilities: 'utilities/utilities.module.css';
+@value shadow-lg from utilities;
+.loginContainer {
+   position: fixed;
+   top: 0;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.loginModal {
+   border-radius: 8px;
+   box-shadow: shadow-lg;
+   background-color: white;
+   padding: 32px 32px 32px 32px;
+   display: flex;
+   flex-direction: column;
+}
+
+.header {
+   font-size: 18px;
+   margin-bottom: 8px;
+}
+
+.textField {
+   outline: none;
+   margin-top: 24px;
+   border-radius: 4px;
+   border: 0.2px solid rgb(207, 207, 207);
+   width: 240px;
+   padding: 10px 12px;
+}
+
+.textField::placeholder {
+   color: rgb(168, 168, 168);
+}
+
+.buttonContainer {
+   display: flex;
+   justify-content: center;
+}
+
+.button {
+   outline: none;
+   padding: 6px 12px;
+   background-color: transparent;
+   border-radius: 4px;
+   border: 0.2px solid rgb(168, 168, 168);
+   margin-top: 24px;
+   color: rgb(94, 94, 94);
+   transition: width 600ms, box-shadow 600ms, transform 300ms;
+}
+
+.button:hover {
+   box-shadow: shadow-lg;
+}
+
+.button:active {
+   transform: scale(0.9);
+}

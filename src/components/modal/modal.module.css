@@ -1,0 +1,30 @@
+@value utilities: 'utilities/utilities.module.css';
+@value shadow-lg from utilities;
+.modalContainer {
+   position: fixed;
+   top: 0;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 11;
+}
+
+.background {
+   position: fixed;
+   top: 0;
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.2);
+   z-index: 10;
+}
+
+.contentContainer {
+   border-radius: 8px;
+   box-shadow: shadow-lg;
+   background: white;
+   max-width: calc(100vw - 32px);
+   max-height: calc(100vh-80px);
+   overflow: auto;
+}

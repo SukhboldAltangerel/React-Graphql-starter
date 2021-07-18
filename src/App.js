@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react'
+import Router from 'routes/router'
+import ThemeContext from 'utilities/theme.context'
+import Alert from 'components/alert/alert'
+import Modal from 'components/modal/modal'
+import { AlertStore } from 'utilities/alert.context'
+import { ModalStore } from 'utilities/modal.context'
+import styles from 'App.module.css'
 
-function App() {
+export default function App() {
+  const themeCtx = useContext(ThemeContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.appContainer}>
+      <div className={styles.background} />
+      <AlertStore>
+        <Alert />
+        <ModalStore>
+          <Modal />
+          <Router />
+        </ModalStore>
+      </AlertStore>
     </div>
-  );
+  )
 }
-
-export default App;

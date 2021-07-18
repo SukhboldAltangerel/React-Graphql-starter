@@ -1,0 +1,13 @@
+@value utilities: 'utilities/utilities.module.css';
+@value shadow-lg from utilities;
+.alertContainer {
+   border-radius: 8px;
+   box-shadow: shadow-lg;
+   background: white;
+   position: fixed;
+   bottom: 32px;
+   left: 50%;
+   transform: translateX(-50%);
+   max-width: calc(100vw - 32px);
+   z-index: 12;
+}
