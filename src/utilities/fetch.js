@@ -1,7 +1,7 @@
 import { baseUrl, baseUrlGraphql } from "./baseUrl"
 
 export async function Fetch({ method, url, body, headers, addOptions }) {
-   fetch(`${baseUrl}/${url}`, {
+   return fetch(`${baseUrl}/${url}`, {
       mode: 'cors',
       // cache: 'default',
       // credentials: 'same-origin',
@@ -15,7 +15,7 @@ export async function Fetch({ method, url, body, headers, addOptions }) {
 }
 
 export async function queryFetch(query) {
-   fetch(baseUrlGraphql, {
+   return fetch(baseUrlGraphql, {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
       body: JSON.stringify({ query: query })

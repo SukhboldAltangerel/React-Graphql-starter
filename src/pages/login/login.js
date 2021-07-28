@@ -17,9 +17,12 @@ export default function Login() {
       setForm(prev => ({ ...prev, [key]: value }))
    }
 
-   const users = useQuery('users', queryFetch(getUsersQuery))
+   const users = useQuery('users', () => queryFetch(getUsersQuery))
 
-   const login = useMutation(['login', form.email], queryFetch(loginQuery(form)))
+   const login = useMutation(() => queryFetch(loginQuery(form)), {
+      onSuccess: () => alertCtx.setAlert({ open: true, content: 'Амжилттай нэвтэрлээ.' }),
+      onError: err => alertCtx.setAlert({ open: true, content: err })
+   })
 
    return (
       <div className={styles.loginContainer}>
@@ -30,7 +33,7 @@ export default function Login() {
             <input type="text" className={styles.textField} value={form.email} onChange={e => handleChange('email', e.target.value)} placeholder="Имэйл хаяг" />
             <input type="password" className={styles.textField} value={form.password} onChange={e => handleChange('password', e.target.value)} placeholder="Нууц үг" />
             <div className={styles.buttonContainer}>
-               <button className={styles.button} onClick={login}>
+               <button className={styles.button} onClick={() => login.mutate()}>
                   Нэвтрэх
                </button>
             </div>
