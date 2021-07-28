@@ -7,7 +7,16 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      onError: () => alert('Алдаа гарлаа.')
+    },
+    mutations: {
+      onError: () => alert('Алдаа гарлаа.')
+    },
+  }
+})
 
 ReactDOM.render(
   <React.StrictMode>

@@ -33,7 +33,7 @@ export default function Login() {
             <input type="text" className={styles.textField} value={form.email} onChange={e => handleChange('email', e.target.value)} placeholder="Имэйл хаяг" />
             <input type="password" className={styles.textField} value={form.password} onChange={e => handleChange('password', e.target.value)} placeholder="Нууц үг" />
             <div className={styles.buttonContainer}>
-               <button className={styles.button} onClick={() => login.mutate()}>
+               <button className={styles.button} onClick={login.mutate}>
                   Нэвтрэх
                </button>
             </div>
