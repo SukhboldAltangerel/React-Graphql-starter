@@ -1,6 +1,6 @@
-import { baseUrl } from "./baseUrl"
+import { baseUrl, baseUrlGraphql } from "./baseUrl"
 
-export default function Fetch({ method, url, body, callback, headers, addOptions }) {
+export async function Fetch({ method, url, body, headers, addOptions }) {
    fetch(`${baseUrl}/${url}`, {
       mode: 'cors',
       // cache: 'default',
@@ -12,5 +12,12 @@ export default function Fetch({ method, url, body, callback, headers, addOptions
       method: method,
       body: body && JSON.stringify(body)
    }).then(res => res.json())
-      .then(data => callback && callback(data))
+}
+
+export async function queryFetch(query) {
+   fetch(baseUrlGraphql, {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST',
+      body: JSON.stringify({ query: query })
+   }).then(res => res.json())
 }

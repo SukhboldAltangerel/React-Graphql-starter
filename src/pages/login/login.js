@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
+import { useMutation, useQuery } from 'react-query'
 import AlertContext from 'utilities/alert.context'
-import argsGql from 'utilities/argsGql'
-import useMutation from 'utilities/useMutation'
-import useQuery from 'utilities/useQuery'
+import { queryFetch } from 'utilities/fetch'
+import { getUsersQuery, loginQuery } from 'utilities/queries'
 import styles from './login.module.css'
 
 export default function Login() {
@@ -17,17 +17,9 @@ export default function Login() {
       setForm(prev => ({ ...prev, [key]: value }))
    }
 
-   const getUsersQuery = useQuery({
-      gql: getUsersGql,
-      initData: [],
-      cache: true
-   })
+   const users = useQuery('users', queryFetch(getUsersQuery))
 
-   const loginMutation = useMutation({
-      gql: loginGql(form)
-   })
-
-   //Try React Query much better!
+   const login = useMutation(['login', form.email], queryFetch(loginQuery(form)))
 
    return (
       <div className={styles.loginContainer}>
@@ -38,7 +30,7 @@ export default function Login() {
             <input type="text" className={styles.textField} value={form.email} onChange={e => handleChange('email', e.target.value)} placeholder="Имэйл хаяг" />
             <input type="password" className={styles.textField} value={form.password} onChange={e => handleChange('password', e.target.value)} placeholder="Нууц үг" />
             <div className={styles.buttonContainer}>
-               <button className={styles.button} onClick={loginMutation.callback}>
+               <button className={styles.button} onClick={login}>
                   Нэвтрэх
                </button>
             </div>
@@ -46,23 +38,3 @@ export default function Login() {
       </div>
    )
 }
-
-const getUsersGql = `
-   {
-      getUsers {
-      id
-      name
-      email
-      password
-      }
-   } 
-`
-
-const loginGql = (args) => `
-   mutation {
-      loginUser(${argsGql(args)}) {
-      success
-      message
-      }
-   }
-`
