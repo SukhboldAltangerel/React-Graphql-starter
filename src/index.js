@@ -10,10 +10,10 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      onError: () => alert('Алдаа гарлаа.')
+      onError: () => { }
     },
     mutations: {
-      onError: () => alert('Алдаа гарлаа.')
+      onError: () => { }
     },
   }
 })
