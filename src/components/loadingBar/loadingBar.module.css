@@ -1,0 +1,21 @@
+.loadingBar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 3px;
+   --color1: rgb(133, 133, 255);
+   --color2: rgb(248, 149, 149);
+   --color3: rgb(167, 255, 167);
+   background: linear-gradient(90deg, var(--color1), var(--color2), var(--color3), var(--color1));
+   animation: loadingAnimation 1200ms linear infinite;
+}
+
+@keyframes loadingAnimation {
+   from {
+      background-position: 0px;
+   }
+   to {
+      background-position: calc(100vw);
+   }
+}

@@ -60,3 +60,8 @@
 .button:active {
    transform: scale(0.9);
 }
+
+.errorContent {
+   padding: 8px;
+   background-color: red;
+}

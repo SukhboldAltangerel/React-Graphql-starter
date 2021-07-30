@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import AlertContext from 'utilities/alert.context'
 import { queryFetch } from 'utilities/fetch'
-import getErrorMsg from 'utilities/getErrorMsg'
 import { getUsersQuery, loginQuery } from 'utilities/queries'
 import styles from './login.module.css'
 
@@ -21,7 +20,13 @@ export default function Login() {
    const users = useQuery('users', () => queryFetch(getUsersQuery))
 
    const login = useMutation(() => queryFetch(loginQuery(form)), {
-      onSuccess: () => alertCtx.setAlert({ open: true, content: 'Амжилттай нэвтэрлээ.' }),
+      onSuccess: (data) => {
+         const errorMsg = data.extensions?.errorMsg
+         errorMsg && alertCtx.setAlert({
+            open: true,
+            content: errorMsg
+         })
+      },
    })
 
    return (

@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 
 const ModalContext = createContext()
 
-export function ModalStore({ children }) {
+export function ModalProvider({ children }) {
    const [modal, setModal] = useState({
       open: false,
       content: null,
