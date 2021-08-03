@@ -18,3 +18,12 @@ mutation {
    }
 }
 `
+
+export const signUpQuery = (args) => `
+mutation {
+   signUpUser(${argsGql(args)}) {
+     name
+     email
+   }
+ } 
+`

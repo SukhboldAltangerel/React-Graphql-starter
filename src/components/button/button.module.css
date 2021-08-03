@@ -1,0 +1,17 @@
+.button {
+   outline: none;
+   padding: 6px 12px;
+   background-color: transparent;
+   border-radius: 4px;
+   border: 0.2px solid rgb(168, 168, 168);
+   color: rgb(94, 94, 94);
+   transition: width 600ms, box-shadow 600ms, transform 300ms;
+}
+
+.button:hover {
+   box-shadow: shadow-lg;
+}
+
+.button:active {
+   transform: scale(0.9);
+}
