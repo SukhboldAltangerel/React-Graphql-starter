@@ -71,7 +71,7 @@ export default function Login() {
                </div>
                <input type="text" className={styles.textField} value={form.email} onChange={e => handleChange('email', e.target.value)} placeholder="Имэйл хаяг" />
                <input type="password" className={styles.textField} value={form.password} onChange={e => handleChange('password', e.target.value)} placeholder="Нууц үг" />
-               <Link className={styles.forgotPassLink}>
+               <Link to="/" className={styles.forgotPassLink}>
                   Нууц үгээ мартсан
                </Link>
                <div className={styles.buttonContainer}>
