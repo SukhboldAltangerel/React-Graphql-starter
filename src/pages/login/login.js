@@ -45,7 +45,7 @@ export default function Login() {
             <div className={styles.buttonContainer}>
                <Button
                   buttonStyle={styles.buttonStyle}
-                  content='Нэвтрэх'
+                  children='Нэвтрэх'
                   onClick={login.mutate}
                />
             </div>

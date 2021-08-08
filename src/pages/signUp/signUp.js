@@ -59,7 +59,7 @@ export default function SignUp() {
             <div className={loginStyles.buttonContainer}>
                <Button
                   buttonStyle={styles.buttonStyle}
-                  content="Бүртгүүлэх"
+                  children="Бүртгүүлэх"
                   onClick={handleSignUp}
                />
             </div>
