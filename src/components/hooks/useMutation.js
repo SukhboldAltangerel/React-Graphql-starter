@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { baseUrlGraphql } from "./baseUrl";
+import { baseUrlGraphql } from "../../utilities/baseUrl";
 
 export default function useMutation({ gql }) {
    const [res, setRes] = useState({})

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { baseUrlGraphql } from "./baseUrl"
+import { baseUrlGraphql } from "../../utilities/baseUrl"
 
 export default function useQuery({ gql, initData, cache }) {
    const [cached] = useState(!!cache && !!localStorage.getItem(gql))

@@ -1,14 +1,16 @@
 import React, { useContext, useState } from 'react'
 import { useMutation } from 'react-query'
-import AlertContext from 'utilities/alert.context'
+import AlertContext from 'components/contexts/alert.context'
 import { queryFetch } from 'utilities/fetch'
-import { signUpQuery } from 'utilities/queries'
+import { signUpQuery } from 'utilities/mutations'
 import loginStyles from '../login/login.module.css'
 import Button from 'components/button/button'
 import styles from './signUp.module.css'
+import { Link, useHistory } from 'react-router-dom'
 
 export default function SignUp() {
    const alertCtx = useContext(AlertContext)
+   const history = useHistory()
 
    const [form, setForm] = useState({
       name: '',
@@ -27,10 +29,19 @@ export default function SignUp() {
    }, {
       onSuccess: data => {
          const errorMsg = data.extensions?.errorMsg
-         errorMsg && alertCtx.setAlert({
+         if (errorMsg) {
+            alertCtx.setAlert({
+               open: true,
+               content: errorMsg
+            })
+            return
+         }
+         alertCtx.setAlert({
             open: true,
-            content: errorMsg
+            content: data.data.loginUser.message
          })
+         localStorage.setItem('token', data.data.loginUser.token)
+         history.push('/')
       }
    })
 
@@ -62,6 +73,10 @@ export default function SignUp() {
                   children="Бүртгүүлэх"
                   onClick={handleSignUp}
                />
+            </div>
+
+            <div className={loginStyles.singUpContainer}>
+               Бүртгэлтэй хэрэглэгч бол <Link to="/login" className={styles.signUpLink}>энд дарж нэвтэрч орно уу</Link>
             </div>
          </div>
       </div>

@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react'
 import { useMutation } from 'react-query'
-import AlertContext from 'utilities/alert.context'
+import AlertContext from 'components/contexts/alert.context'
 import { queryFetch } from 'utilities/fetch'
-import { loginQuery } from 'utilities/queries'
+import { loginQuery } from 'utilities/mutations'
 import styles from './login.module.css'
 import Button from 'components/button/button'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 export default function Login() {
    const alertCtx = useContext(AlertContext)
+   const history = useHistory()
 
    const [form, setForm] = useState({
       email: '',
@@ -22,10 +23,19 @@ export default function Login() {
    const login = useMutation(() => queryFetch(loginQuery(form)), {
       onSuccess: data => {
          const errorMsg = data.extensions?.errorMsg
-         errorMsg && alertCtx.setAlert({
+         if (errorMsg) {
+            alertCtx.setAlert({
+               open: true,
+               content: errorMsg
+            })
+            return
+         }
+         alertCtx.setAlert({
             open: true,
-            content: errorMsg
+            content: data.data.loginUser.message
          })
+         localStorage.setItem('token', data.data.loginUser.token)
+         history.push('/')
       },
    })
 
