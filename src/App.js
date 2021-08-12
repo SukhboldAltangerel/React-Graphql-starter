@@ -7,6 +7,7 @@ import AlertContext, { AlertProvider } from 'components/contexts/alert.context'
 import { ModalProvider } from 'components/contexts/modal.context'
 import styles from 'App.module.css'
 import LoadingBar from 'components/loadingBar/loadingBar'
+import Sidebar from 'components/sidebar/sidebar'
 
 export default function App() {
   const themeCtx = useContext(ThemeContext)
@@ -20,7 +21,12 @@ export default function App() {
         <Alert />
         <ModalProvider>
           <Modal />
-          <Router />
+          <div className={styles.layout}>
+            <Sidebar />
+            <div className={styles.routeWrapper}>
+              <Router />
+            </div>
+          </div>
         </ModalProvider>
       </AlertProvider>
     </div>

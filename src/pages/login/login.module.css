@@ -1,10 +1,7 @@
 @value utilities: 'utilities/utilities.module.css';
 @value shadow-lg from utilities;
 .loginContainer {
-   position: fixed;
-   top: 0;
-   width: 100vw;
-   height: 100vh;
+   height: 100%;
    display: flex;
    align-items: center;
    justify-content: center;
