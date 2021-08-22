@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { baseUrlGraphql } from "../../utilities/baseUrl";
+import { baseUrlGraphql } from "../baseUrl";
 
 export default function useMutation({ gql }) {
    const [res, setRes] = useState({})
    const [loading, setLoading] = useState(false)
    const [error, setError] = useState({})
-
-   console.log(gql)
 
    function callback() {
       setLoading(true)

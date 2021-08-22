@@ -1,0 +1,36 @@
+@value utilities: 'utilities/utilities.module.css';
+@value shadow-lg from utilities;
+.link {
+   text-decoration: none;
+}
+
+.sidebarItem {
+   display: flex;
+   align-items: center;
+   padding: 4px;
+   margin: 8px 0;
+   border-radius: 6px;
+   transition: box-shadow 600ms, transform 300ms;
+}
+
+.sidebarItem:hover {
+   box-shadow: shadow-lg;
+}
+
+.sidebarItem:active {
+   transform: scale(0.9);
+}
+
+.icon {
+   height: 28px;
+   width: 28px;
+   flex-shrink: 0;
+   color: white;
+}
+
+.label {
+   width: 132px;
+   flex-shrink: 0;
+   margin-left: 8px;
+   color: white;
+}
