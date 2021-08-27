@@ -10,6 +10,7 @@ import LoadingBar from 'components/loadingBar/loadingBar'
 import Sidebar from 'components/sidebar/sidebar'
 import useDeviceWidth from 'utilities/hooks/useDeviceWidth'
 import SideBarMobile from 'components/sidebarMobile/sidebarMoblie'
+import Chat from 'components/chat/chat'
 
 export default function App() {
   const themeCtx = useContext(ThemeContext)
@@ -19,6 +20,9 @@ export default function App() {
     <div className={styles.appContainer}>
       <div className={styles.background} />
       <LoadingBar />
+      {device === 'desktop' &&
+        <Chat />
+      }
       <AlertProvider>
         <Alert />
         <ModalProvider>

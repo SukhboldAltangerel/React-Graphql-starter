@@ -1,5 +1,5 @@
-@value utilities: 'utilities/utilities.module.css';
-@value shadow-lg from utilities;
+@value variables: 'utilities/variables.module.css';
+@value shadow from variables;
 .alertContainer {
    position: fixed;
    bottom: 32px;
@@ -9,7 +9,7 @@
 
 .alertDialog {
    border-radius: 8px;
-   box-shadow: shadow-lg;
+   box-shadow: shadow;
    background: white;
    max-width: calc(100vw - 32px);
    z-index: 12;

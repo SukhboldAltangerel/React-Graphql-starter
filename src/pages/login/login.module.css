@@ -1,5 +1,5 @@
-@value utilities: 'utilities/utilities.module.css';
-@value shadow-lg from utilities;
+@value variables: 'utilities/variables.module.css';
+@value shadow from variables;
 .loginContainer {
    height: 100%;
    display: flex;
@@ -9,7 +9,7 @@
 
 .loginModal {
    border-radius: 8px;
-   box-shadow: shadow-lg;
+   box-shadow: shadow;
    background-color: white;
    padding: 32px 32px 32px 32px;
    display: flex;
