@@ -11,7 +11,7 @@ export default function Router() {
 
    const routesTransition = useTransition(location, {
       from: { opacity: 0, transform: 'scale(0.90)' },
-      enter: { opacity: 1, transform: 'scale(1)', delay: 200 },
+      enter: { opacity: 1, transform: 'scale(1)', delay: 100 },
       leave: { opacity: 0, transform: 'scale(0.90)' },
       config: { clamp: true },
    })

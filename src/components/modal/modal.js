@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react'
-import ModalContext from 'components/contexts/modal.context'
-import useClickOutside from 'components/hooks/useClickOutside'
+import ModalContext from 'utilities/contexts/modal.context'
+import useClickOutside from 'utilities/hooks/useClickOutside'
 import styles from './modal.module.css'
 import { Transition, animated } from 'react-spring'
 

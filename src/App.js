@@ -1,17 +1,19 @@
 import React, { useContext } from 'react'
 import Router from 'routes/router'
-import ThemeContext from 'components/contexts/theme.context'
+import ThemeContext from 'utilities/contexts/theme.context'
 import Alert from 'components/alert/alert'
 import Modal from 'components/modal/modal'
-import AlertContext, { AlertProvider } from 'components/contexts/alert.context'
-import { ModalProvider } from 'components/contexts/modal.context'
+import { AlertProvider } from 'utilities/contexts/alert.context'
+import { ModalProvider } from 'utilities/contexts/modal.context'
 import styles from 'App.module.css'
 import LoadingBar from 'components/loadingBar/loadingBar'
 import Sidebar from 'components/sidebar/sidebar'
+import useDeviceWidth from 'utilities/hooks/useDeviceWidth'
+import SideBarMobile from 'components/sidebarMobile/sidebarMoblie'
 
 export default function App() {
   const themeCtx = useContext(ThemeContext)
-  const alertCtx = useContext(AlertContext)
+  const device = useDeviceWidth()
 
   return (
     <div className={styles.appContainer}>
@@ -22,7 +24,10 @@ export default function App() {
         <ModalProvider>
           <Modal />
           <div className={styles.layout}>
-            <Sidebar />
+            {device === 'mobile'
+              ? <SideBarMobile />
+              : <Sidebar />
+            }
             <div className={styles.routeWrapper}>
               <Router />
             </div>

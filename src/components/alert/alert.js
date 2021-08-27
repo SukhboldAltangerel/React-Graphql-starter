@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import AlertContext from 'components/contexts/alert.context'
+import AlertContext from 'utilities/contexts/alert.context'
 import styles from './alert.module.css'
 import { Transition, animated } from 'react-spring'
 
