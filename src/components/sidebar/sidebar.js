@@ -8,15 +8,15 @@ const width = 36
 export const expandedWidth = 180
 
 export const sidebarItems = [{
-   label: 'home',
+   label: 'Нүүр',
    link: '/',
    icon: HiHome
 }, {
-   label: 'user',
+   label: 'Нэвтрэх',
    link: '/login',
    icon: HiUserCircle
 }, {
-   label: 'add user',
+   label: 'Бүртгүүлэх',
    link: '/sign-up',
    icon: HiUserAdd
 }]

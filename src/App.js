@@ -9,7 +9,7 @@ import styles from 'App.module.css'
 import LoadingBar from 'components/loadingBar/loadingBar'
 import Sidebar from 'components/sidebar/sidebar'
 import useDeviceWidth from 'utilities/hooks/useDeviceWidth'
-import SideBarMobile from 'components/sidebarMobile/sidebarMoblie'
+import SideBarMobile from 'components/sidebar/sidebarMoblie'
 import Chat from 'components/chat/chat'
 
 export default function App() {

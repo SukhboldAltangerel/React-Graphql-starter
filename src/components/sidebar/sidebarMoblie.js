@@ -4,11 +4,16 @@ import { expandedWidth, sidebarItems } from 'components/sidebar/sidebar'
 import { Transition, animated } from 'react-spring'
 import SidebarItem from 'components/sidebar/sidebarItem'
 import useClickOutside from 'utilities/hooks/useClickOutside'
+import { HiMenu } from 'react-icons/hi'
 
 export default function SideBarMobile() {
    const [open, setOpen] = useState(false)
 
    const sidebarRef = useRef()
+
+   function handleOpen() {
+      setOpen(true)
+   }
 
    function handleClose() {
       setOpen(false)
@@ -19,9 +24,9 @@ export default function SideBarMobile() {
    return (
       <Transition
          items={open}
-         from={{ width: 0 }}
-         enter={{ width: expandedWidth }}
-         leave={{ width: 0 }}
+         from={{ width: 0, padding: '32px 0px' }}
+         enter={{ width: expandedWidth, padding: '32px 8px' }}
+         leave={{ width: 0, padding: '32px 0px' }}
          config={{ clamp: true }}
       >
          {(anims, item) => item ?
@@ -30,9 +35,7 @@ export default function SideBarMobile() {
                   <SidebarItem sidebarItem={item} expanded={true} key={item.link} />
                )}
             </animated.div>
-            : <span onClick={() => setOpen(true)}>
-               Open
-            </span>
+            : <HiMenu className={styles.menuIcon} onClick={handleOpen} />
          }
       </Transition>
    )

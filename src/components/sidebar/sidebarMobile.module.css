@@ -1,0 +1,24 @@
+@value variables: 'utilities/variables.module.css';
+@value indigoDark from variables;
+.sidebar {
+   overflow-y: auto;
+   border-right: 1px solid rgba(0, 0, 0, 0.3);
+   overflow-x: hidden;
+   background-color: indigoDark;
+   position: fixed;
+   top: 0;
+   left: 0;
+   height: 100vh;
+   z-index: 11;
+}
+
+.menuIcon {
+   height: 24px;
+   width: 24px;
+   position: fixed;
+   top: 12px;
+   left: 12px;
+   color: indigoDark;
+   z-index: 10;
+   cursor: pointer;
+}

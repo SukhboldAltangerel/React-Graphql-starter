@@ -39,8 +39,13 @@ export default function Chat() {
             {(anims, item) => item &&
                <animated.div className={styles.chatContainer} style={anims}>
                   {messages.map((message, i) =>
-                     <div className={styles.message}>
-                        {message.user}: {message.message}
+                     <div className={styles.messageContainer} key={i}>
+                        <span className={styles.user}>
+                           {message.user}:
+                        </span>
+                        <span className={styles.message}>
+                           {message.message}
+                        </span>
                      </div>
                   )}
                </animated.div>
