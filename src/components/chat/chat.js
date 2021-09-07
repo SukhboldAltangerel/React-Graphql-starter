@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './chat.module.css'
 import { Transition, animated } from 'react-spring'
 import { HiOutlineChat } from 'react-icons/hi'
+import { io } from 'socket.io-client'
+import { baseSocket } from 'utilities/baseUrl'
+
+const socket = io(baseSocket, {
+   withCredentials: true
+})
 
 export default function Chat() {
    const [visible, setVisible] = useState(true)
@@ -14,6 +20,10 @@ export default function Chat() {
    function toggleOpen() {
       setOpen(prev => !prev)
    }
+
+   useEffect(() => {
+      socket.emit('userConnect', { userId: 1 })
+   }, [])
 
    return (
       <>
