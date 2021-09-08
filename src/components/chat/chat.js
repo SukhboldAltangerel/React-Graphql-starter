@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react'
 import styles from './chat.module.css'
 import { Transition, animated } from 'react-spring'
 import { HiOutlineChat } from 'react-icons/hi'
-import { io } from 'socket.io-client'
+// import { io } from 'socket.io-client'
 import { baseSocket } from 'utilities/baseUrl'
+import { createClient } from 'graphql-ws'
 
-const socket = io(baseSocket, {
-   withCredentials: true
+const client = createClient({
+   url: baseSocket
 })
+
+// const socket = io(baseSocket, {
+//    withCredentials: true,
+//    transports: ['websocket']
+// })
 
 export default function Chat() {
    const [visible, setVisible] = useState(true)
@@ -22,7 +28,20 @@ export default function Chat() {
    }
 
    useEffect(() => {
-      socket.emit('userConnect', { userId: 1 })
+      client.subscribe({
+         query: 'subscription { messageSubs {message} }',
+      }, {
+         next: (data) => {
+            console.log('data', data)
+         },
+         error: (error) => {
+            console.error('error', error)
+         },
+         complete: () => {
+            console.log('no more greetings')
+         },
+      }
+      )
    }, [])
 
    return (
