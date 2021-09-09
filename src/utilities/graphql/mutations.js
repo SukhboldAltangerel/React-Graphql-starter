@@ -17,3 +17,11 @@ mutation {
    }
  } 
 `
+
+export const sendMessageMutation = (args) => `
+mutation {
+   addChatRedis(${argsGql(args)}) {
+     message
+   }
+ }
+`

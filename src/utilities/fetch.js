@@ -1,11 +1,16 @@
 import { baseUrl, baseUrlGraphql } from "./baseUrl"
 
+const savedToken = localStorage.getItem('token')
+
 export async function Fetch({ method, url, body, headers, addOptions }) {
    return fetch(`${baseUrl}/${url}`, {
       mode: 'cors',
       // cache: 'default',
       // credentials: 'same-origin',
-      headers: headers ?? { 'Content-Type': 'application/json' },
+      headers: headers ?? {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${savedToken}`
+      },
       // redirect: 'follow',
       // referrerPolicy: 'no-referrer',
       ...addOptions,
@@ -16,7 +21,10 @@ export async function Fetch({ method, url, body, headers, addOptions }) {
 
 export async function queryFetch(query) {
    return fetch(baseUrlGraphql, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${savedToken}`
+      },
       method: 'POST',
       body: JSON.stringify({ query: query })
    }).then(res => res.json())

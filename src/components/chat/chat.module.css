@@ -1,5 +1,6 @@
 @value variables: 'utilities/variables.module.css';
 @value indigoDark, shadow from variables;
+@value chatGray: rgb(239, 239, 239);
 .chatIconContainer {
    position: fixed;
    bottom: 24px;
@@ -29,6 +30,13 @@
    background-color: white;
    z-index: 10;
    padding: 8px;
+   display: flex;
+   flex-direction: column;
+}
+
+.chatsSection {
+   flex-grow: 1;
+   overflow-y: auto;
 }
 
 .messageContainer {
@@ -38,7 +46,7 @@
    align-items: center;
 }
 
-.user {
+.name {
    margin-right: 8px;
    padding: 4px;
 }
@@ -47,6 +55,20 @@
    display: inline;
    font-size: 13px;
    padding: 4px 8px;
-   background-color: rgb(239, 239, 239);
+   background-color: chatGray;
    border-radius: 8px;
+}
+
+.messageInputSection {
+   display: flex;
+   justify-content: flex-end;
+   padding: 8px;
+}
+
+.messageInput {
+   outline: none;
+   border: none;
+   padding: 4px 8px;
+   background-color: chatGray;
+   border-radius: 8px
 }

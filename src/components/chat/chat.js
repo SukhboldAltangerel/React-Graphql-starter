@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './chat.module.css'
 import { Transition, animated } from 'react-spring'
 import { HiOutlineChat } from 'react-icons/hi'
 // import { io } from 'socket.io-client'
 import { baseSocket } from 'utilities/baseUrl'
 import { createClient } from 'graphql-ws'
+import { useMutation } from 'react-query'
+import { queryFetch } from 'utilities/fetch'
+import AlertContext from 'utilities/contexts/alert.context'
+import { sendMessageMutation } from 'utilities/graphql/mutations'
+import { chatSub } from 'utilities/graphql/subscriptions'
 
 const client = createClient({
    url: baseSocket
@@ -16,12 +21,41 @@ const client = createClient({
 // })
 
 export default function Chat() {
+   const alertCtx = useContext(AlertContext)
+
    const [visible, setVisible] = useState(true)
    const [open, setOpen] = useState(false)
-   const [messages, setMessages] = useState([{
-      user: 'user 1',
-      message: 'message 1'
+   const [chat, setChat] = useState([{
+      name: 'Bold',
+      message: 'message 1',
+      dateTime: '1631174662508'
    }])
+   const [message, setMessage] = useState('')
+
+   function changeMessage(value) {
+      setMessage(value)
+   }
+
+   const sendMessage = useMutation(() => {
+      const args = { message: message }
+      return queryFetch(sendMessageMutation(args))
+   }, {
+      onSuccess: data => {
+         setMessage('')
+      },
+      onError: err => {
+         alertCtx.setAlert({
+            open: true,
+            content: 'Чатыг илгээж чадсангүй.'
+         })
+      }
+   })
+
+   function listenKeyMessage(e) {
+      if (e.key === 'Enter') {
+         sendMessage.mutate()
+      }
+   }
 
    function toggleOpen() {
       setOpen(prev => !prev)
@@ -29,7 +63,7 @@ export default function Chat() {
 
    useEffect(() => {
       client.subscribe({
-         query: 'subscription { messageSubs {message} }',
+         query: chatSub,
       }, {
          next: (data) => {
             console.log('data', data)
@@ -67,16 +101,21 @@ export default function Chat() {
          >
             {(anims, item) => item &&
                <animated.div className={styles.chatContainer} style={anims}>
-                  {messages.map((message, i) =>
-                     <div className={styles.messageContainer} key={i}>
-                        <span className={styles.user}>
-                           {message.user}:
-                        </span>
-                        <span className={styles.message}>
-                           {message.message}
-                        </span>
-                     </div>
-                  )}
+                  <div className={styles.chatsSection}>
+                     {chat.map((message, i) =>
+                        <div className={styles.messageContainer} key={i}>
+                           <span className={styles.name}>
+                              {message.name}:
+                           </span>
+                           <span className={styles.message}>
+                              {message.message}
+                           </span>
+                        </div>
+                     )}
+                  </div>
+                  <div className={styles.messageInputSection}>
+                     <input className={styles.messageInput} value={message} onChange={e => changeMessage(e.target.value)} onKeyDown={listenKeyMessage} />
+                  </div>
                </animated.div>
             }
          </Transition>
