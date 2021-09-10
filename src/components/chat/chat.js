@@ -5,11 +5,12 @@ import { HiOutlineChat } from 'react-icons/hi'
 // import { io } from 'socket.io-client'
 import { baseSocket } from 'utilities/baseUrl'
 import { createClient } from 'graphql-ws'
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import { queryFetch } from 'utilities/fetch'
 import AlertContext from 'utilities/contexts/alert.context'
 import { sendMessageMutation } from 'utilities/graphql/mutations'
 import { chatSub } from 'utilities/graphql/subscriptions'
+import { getChat } from 'utilities/graphql/queries'
 
 const client = createClient({
    url: baseSocket
@@ -25,12 +26,9 @@ export default function Chat() {
 
    const [visible, setVisible] = useState(true)
    const [open, setOpen] = useState(false)
-   const [chat, setChat] = useState([{
-      name: 'Bold',
-      message: 'message 1',
-      dateTime: '1631174662508'
-   }])
+
    const [message, setMessage] = useState('')
+   const chat = useQuery('chat', queryFetch(getChat))
 
    function changeMessage(value) {
       setMessage(value)
