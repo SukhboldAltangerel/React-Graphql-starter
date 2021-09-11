@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles from './chat.module.css'
 import { Transition, animated } from 'react-spring'
 import { HiOutlineChat } from 'react-icons/hi'
-// import { io } from 'socket.io-client'
 import { baseSocket } from 'utilities/baseUrl'
 import { createClient } from 'graphql-ws'
 import { useMutation, useQuery } from 'react-query'
@@ -15,11 +14,6 @@ import { getChat } from 'utilities/graphql/queries'
 const client = createClient({
    url: baseSocket
 })
-
-// const socket = io(baseSocket, {
-//    withCredentials: true,
-//    transports: ['websocket']
-// })
 
 export default function Chat() {
    const alertCtx = useContext(AlertContext)
