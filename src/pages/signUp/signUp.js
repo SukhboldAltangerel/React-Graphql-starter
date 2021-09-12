@@ -38,9 +38,9 @@ export default function SignUp() {
          }
          alertCtx.setAlert({
             open: true,
-            content: data.data.loginUser.message
+            content: data.data.signUp.message
          })
-         localStorage.setItem('token', data.data.loginUser.token)
+         localStorage.setItem('token', data.data.signUp.token)
          history.push('/')
       }
    })

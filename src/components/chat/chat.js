@@ -9,7 +9,8 @@ import { queryFetch } from 'utilities/fetch'
 import AlertContext from 'utilities/contexts/alert.context'
 import { sendMessageMutation } from 'utilities/graphql/mutations'
 import { chatSub } from 'utilities/graphql/subscriptions'
-import { getChat } from 'utilities/graphql/queries'
+import { getChatQuery } from 'utilities/graphql/queries'
+import UserContext from 'utilities/contexts/user.context'
 
 const client = createClient({
    url: baseSocket
@@ -17,12 +18,27 @@ const client = createClient({
 
 export default function Chat() {
    const alertCtx = useContext(AlertContext)
+   const userCtx = useContext(UserContext)
+
+   const userId = userCtx.user?.id
 
    const [visible, setVisible] = useState(true)
    const [open, setOpen] = useState(false)
-
+   const [chat, setChat] = useState([])
    const [message, setMessage] = useState('')
-   const chat = useQuery('chat', queryFetch(getChat))
+
+   const chatQuery = useQuery('chat', () => queryFetch(getChatQuery), {
+      enabled: false,
+      onSuccess: data => {
+         setChat(data.data?.getChatRedis)
+      },
+      onError: err => {
+         alertCtx.setAlert({
+            open: true,
+            content: 'Чатыг татаж чадсангүй.'
+         })
+      }
+   })
 
    function changeMessage(value) {
       setMessage(value)
@@ -54,20 +70,14 @@ export default function Chat() {
    }
 
    useEffect(() => {
+      chatQuery.refetch()
       client.subscribe({
          query: chatSub,
       }, {
-         next: (data) => {
-            console.log('data', data)
-         },
-         error: (error) => {
-            console.error('error', error)
-         },
-         complete: () => {
-            console.log('no more greetings')
-         },
-      }
-      )
+         next: data => {
+            setChat(prev => [...prev, data.data?.chatSub])
+         }
+      })
    }, [])
 
    return (
@@ -95,14 +105,20 @@ export default function Chat() {
                <animated.div className={styles.chatContainer} style={anims}>
                   <div className={styles.chatsSection}>
                      {chat.map((message, i) =>
-                        <div className={styles.messageContainer} key={i}>
-                           <span className={styles.name}>
-                              {message.name}:
-                           </span>
-                           <span className={styles.message}>
-                              {message.message}
-                           </span>
-                        </div>
+                        userId === message.userId
+                           ? <div className={styles.messageContainerSelf}>
+                              <span className={styles.messageSelf}>
+                                 {message.message}
+                              </span>
+                           </div>
+                           : <div className={styles.messageContainer} key={i}>
+                              <span className={styles.name}>
+                                 {message.name}:
+                              </span>
+                              <span className={styles.message}>
+                                 {message.message}
+                              </span>
+                           </div>
                      )}
                   </div>
                   <div className={styles.messageInputSection}>

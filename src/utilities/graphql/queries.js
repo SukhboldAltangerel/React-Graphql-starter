@@ -3,12 +3,26 @@ export const getUsersQuery = `
    getUsers {
       id
       name
-      email
-      password
    }
 } 
 `
 
-export const getChat = `
-   
+export const getChatQuery = `
+{
+   getChatRedis {
+     userId
+     name
+     message
+     dateTime
+   }
+}
+`
+
+export const getUserQuery = `
+{
+   getUser {
+     id
+     name
+   }
+}
 `

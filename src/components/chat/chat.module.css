@@ -52,11 +52,26 @@
 }
 
 .message {
-   display: inline;
    font-size: 13px;
    padding: 4px 8px;
    background-color: chatGray;
    border-radius: 8px;
+}
+
+.messageContainerSelf {
+   padding: 8px;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: flex-end;
+}
+
+.messageSelf {
+   font-size: 13px;
+   padding: 4px 8px;
+   background-color: indigoDark;
+   border-radius: 8px;
+   color: white;
 }
 
 .messageInputSection {
