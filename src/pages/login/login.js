@@ -6,9 +6,11 @@ import { loginQuery } from 'utilities/graphql/mutations'
 import styles from './login.module.css'
 import Button from 'components/button/button'
 import { Link, useHistory } from 'react-router-dom'
+import UserContext from 'utilities/contexts/user.context'
 
 export default function Login() {
    const alertCtx = useContext(AlertContext)
+   const userCtx = useContext(UserContext)
    const history = useHistory()
 
    const [form, setForm] = useState({
@@ -34,7 +36,13 @@ export default function Login() {
             open: true,
             content: data.data.loginUser.message
          })
-         localStorage.setItem('token', data.data.loginUser.token)
+         const userData = data.data.loginUser ?? {}
+         localStorage.setItem('token', userData.token)
+         userCtx.setUser({
+            id: userData.id,
+            name: userData.name,
+            email: userData.email
+         })
          history.push('/')
       },
    })

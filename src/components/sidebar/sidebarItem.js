@@ -6,6 +6,7 @@ import styles from './sidebarItem.module.css'
 export default function SidebarItem({ sidebarItem, expanded }) {
    function handleClick(e) {
       e.stopPropagation()
+      sidebarItem.action && sidebarItem.action()
    }
 
    return (

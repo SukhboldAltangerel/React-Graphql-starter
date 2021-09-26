@@ -23,6 +23,7 @@ export const getUserQuery = `
    getUser {
      id
      name
+     email
    }
 }
 `

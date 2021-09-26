@@ -5,6 +5,9 @@ mutation {
    loginUser(${argsGql(args)}) {
       message
       token
+      id
+      name
+      email
    }
 }
 `
@@ -13,7 +16,6 @@ export const signUpQuery = (args) => `
 mutation {
    signUpUser(${argsGql(args)}) {
       message
-      token
    }
  } 
 `

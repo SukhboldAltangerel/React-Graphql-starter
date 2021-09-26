@@ -1,10 +1,14 @@
 import { Spring, animated } from 'react-spring'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './sidebar.module.css'
-import { HiHome, HiUserCircle, HiUserAdd } from 'react-icons/hi'
+import { HiHome, HiUserCircle, HiUserAdd, HiOutlineLogin, HiOutlineLogout } from 'react-icons/hi'
 import SidebarItem from './sidebarItem'
+import SidebarItemNested from './sidebarItemNested'
+import { useContext } from 'react/cjs/react.development'
+import UserContext from 'utilities/contexts/user.context'
+import AlertContext from 'utilities/contexts/alert.context'
 
-const width = 36
+const width = 40
 export const expandedWidth = 180
 
 export const sidebarItems = [{
@@ -12,17 +16,54 @@ export const sidebarItems = [{
    link: '/',
    icon: HiHome
 }, {
-   label: 'Нэвтрэх',
-   link: '/login',
-   icon: HiUserCircle
-}, {
-   label: 'Бүртгүүлэх',
-   link: '/sign-up',
-   icon: HiUserAdd
+   label: 'Хэрэглэгч',
+   icon: HiUserCircle,
+   subItems: [{
+      label: 'Нэвтрэх',
+      link: '/login',
+      icon: HiOutlineLogin
+   }, {
+      label: 'Бүртгүүлэх',
+      link: '/sign-up',
+      icon: HiUserAdd
+   }, {
+      label: 'Гарах',
+      link: '/',
+      action: () => { },
+      icon: HiOutlineLogout
+   }]
 }]
 
 export default function Sidebar() {
+   const userCtx = useContext(UserContext)
+   const alertCtx = useContext(AlertContext)
+
    const [expanded, setExpanded] = useState(false)
+   const [sidebarItemsInjected, setSidebarItemsInjected] = useState(sidebarItems)
+
+   useEffect(() => {
+      setSidebarItemsInjected(prev => {
+         const next = [...prev]
+         next[1].subItems[2].action = logOut
+         return next
+      })
+   }, [])
+
+   function logOut() {
+      if (localStorage.getItem('token') === null) {
+         alertCtx.setAlert({
+            open: true,
+            content: 'Хэрэглэгч нэвтрээгүй байна.'
+         })
+      } else {
+         localStorage.clear()
+         userCtx.setUser({})
+         alertCtx.setAlert({
+            open: true,
+            content: 'Хэрэглэгч гарлаа.'
+         })
+      }
+   }
 
    return (
       <Spring
@@ -31,8 +72,9 @@ export default function Sidebar() {
       >
          {anims =>
             <animated.div className={styles.sidebar} style={anims} onClick={() => setExpanded(prev => !prev)}>
-               {sidebarItems.map(item =>
-                  <SidebarItem sidebarItem={item} expanded={expanded} key={item.link} />
+               {sidebarItemsInjected.map(item => item.subItems
+                  ? <SidebarItemNested sidebarItem={item} expanded={expanded} key={item.label} />
+                  : <SidebarItem sidebarItem={item} expanded={expanded} key={item.label} />
                )}
             </animated.div>
          }

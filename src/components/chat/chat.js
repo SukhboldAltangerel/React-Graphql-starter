@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from './chat.module.css'
 import { Transition, animated } from 'react-spring'
 import { HiOutlineChat } from 'react-icons/hi'
@@ -66,7 +66,15 @@ export default function Chat() {
    }
 
    function toggleOpen() {
-      setOpen(prev => !prev)
+      setOpen(prev => {
+         !prev && setTimeout(() => {
+            chatSectionRef.current && chatSectionRef.current.scroll({
+               top: chatSectionRef.current.scrollHeight,
+               behavior: 'smooth'
+            })
+         }, 10)
+         return !prev
+      })
    }
 
    useEffect(() => {
@@ -76,9 +84,15 @@ export default function Chat() {
       }, {
          next: data => {
             setChat(prev => [...prev, data.data?.chatSub])
+            chatSectionRef.current && chatSectionRef.current.scrollBy({
+               top: 46,
+               behavior: 'smooth'
+            })
          }
       })
    }, [])
+
+   const chatSectionRef = useRef()
 
    return (
       <>
@@ -97,16 +111,16 @@ export default function Chat() {
 
          <Transition
             items={visible && open}
-            from={{ transform: 'scale(0)' }}
-            enter={{ transform: 'scale(1)' }}
-            leave={{ transform: 'scale(0)' }}
+            from={{ transform: 'scale(0.8)', opacity: 0 }}
+            enter={{ transform: 'scale(1)', opacity: 1 }}
+            leave={{ transform: 'scale(0.8)', opacity: 0 }}
          >
             {(anims, item) => item &&
                <animated.div className={styles.chatContainer} style={anims}>
-                  <div className={styles.chatsSection}>
+                  <div className={styles.chatsSection} ref={chatSectionRef}>
                      {chat.map((message, i) =>
                         userId === message.userId
-                           ? <div className={styles.messageContainerSelf}>
+                           ? <div className={styles.messageContainerSelf} key={i}>
                               <span className={styles.messageSelf}>
                                  {message.message}
                               </span>

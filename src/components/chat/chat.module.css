@@ -39,6 +39,10 @@
    overflow-y: auto;
 }
 
+.chatsSection::-webkit-scrollbar {
+   display: none;
+}
+
 .messageContainer {
    padding: 8px;
    display: flex;

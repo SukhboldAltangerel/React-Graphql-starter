@@ -16,11 +16,12 @@ import UserContext from 'utilities/contexts/user.context'
 export default function App() {
   const themeCtx = useContext(ThemeContext)
   const userCtx = useContext(UserContext)
-  
+
   const device = useDeviceWidth()
 
-  const user = userCtx.user
-  const loggedIn = user?.id !== undefined
+  // const user = userCtx.user
+  // const loggedIn = user?.id !== undefined
+  const loggedIn = localStorage.getItem('token') !== null
 
   return (
     <div className={styles.appContainer}>

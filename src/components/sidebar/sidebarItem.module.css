@@ -7,8 +7,7 @@
 .sidebarItem {
    display: flex;
    align-items: center;
-   padding: 4px;
-   margin: 8px 0;
+   padding: 8px 4px;
    border-radius: 6px;
    transition: box-shadow 600ms, transform 300ms;
 }
@@ -22,8 +21,8 @@
 }
 
 .icon {
-   height: 28px;
-   width: 28px;
+   height: 26px;
+   width: 26px;
    flex-shrink: 0;
    color: white;
 }
@@ -33,4 +32,5 @@
    flex-shrink: 0;
    margin-left: 8px;
    color: white;
+   font-size: 15px;
 }

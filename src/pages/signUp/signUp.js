@@ -40,8 +40,7 @@ export default function SignUp() {
             open: true,
             content: data.data.signUp.message
          })
-         localStorage.setItem('token', data.data.signUp.token)
-         history.push('/')
+         history.push('/login')
       }
    })
 

@@ -1,0 +1,8 @@
+.sidebarItem {
+   cursor: pointer;
+}
+
+.subItemsContainer {
+   margin-left: 10px;
+   overflow: hidden;
+}
