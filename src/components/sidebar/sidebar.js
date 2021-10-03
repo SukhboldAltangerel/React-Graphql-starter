@@ -50,7 +50,7 @@ export default function Sidebar() {
    }, [])
 
    function logOut() {
-      if (localStorage.getItem('token') === null) {
+      if (userCtx.user.id === undefined) {
          alertCtx.setAlert({
             open: true,
             content: 'Хэрэглэгч нэвтрээгүй байна.'

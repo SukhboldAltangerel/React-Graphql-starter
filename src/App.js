@@ -19,9 +19,8 @@ export default function App() {
 
   const device = useDeviceWidth()
 
-  // const user = userCtx.user
-  // const loggedIn = user?.id !== undefined
-  const loggedIn = localStorage.getItem('token') !== null
+  const user = userCtx.user
+  const loggedIn = user?.id !== undefined
 
   return (
     <div className={styles.appContainer}>
