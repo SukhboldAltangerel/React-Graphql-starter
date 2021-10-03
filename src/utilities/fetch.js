@@ -2,7 +2,7 @@ import { baseUrl, baseUrlGraphql } from "./baseUrl"
 
 const savedToken = localStorage.getItem('token')
 
-export async function Fetch({ method, url, body, headers, addOptions }) {
+export async function Fetch({ method, url, body, headers, options }) {
    return fetch(`${baseUrl}/${url}`, {
       mode: 'cors',
       // cache: 'default',
@@ -13,7 +13,7 @@ export async function Fetch({ method, url, body, headers, addOptions }) {
       },
       // redirect: 'follow',
       // referrerPolicy: 'no-referrer',
-      ...addOptions,
+      ...options,
       method: method,
       body: body && JSON.stringify(body)
    }).then(res => res.json())
