@@ -7,6 +7,7 @@ import SidebarItemNested from './sidebarItemNested'
 import { useContext } from 'react/cjs/react.development'
 import UserContext from 'utilities/contexts/user.context'
 import AlertContext from 'utilities/contexts/alert.context'
+import { RiFolderUploadFill } from 'react-icons/ri'
 
 const width = 40
 export const expandedWidth = 180
@@ -32,6 +33,10 @@ export const sidebarItems = [{
       action: () => { },
       icon: HiOutlineLogout
    }]
+}, {
+   label: 'Файл хадгалах',
+   link: '/file-upload',
+   icon: RiFolderUploadFill
 }]
 
 export default function Sidebar() {

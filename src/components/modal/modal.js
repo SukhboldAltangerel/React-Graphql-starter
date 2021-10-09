@@ -26,7 +26,7 @@ export default function Modal() {
       >
          {(anims, item) => item &&
             <>
-               <animated.div className={styles.background} style={{ opacity: anims.opacity, backdropFilter: anims.backdropFilter }} />
+               <animated.div className={styles.background} style={{ backdropFilter: anims.backdropFilter }} />
                <div className={styles.modalContainer}>
                   <animated.div className={styles.contentContainer} style={{ transform: anims.transform, opacity: anims.opacity }} ref={contentContainerRef}>
                      {modalCtx.modal.content}

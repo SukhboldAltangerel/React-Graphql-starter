@@ -1,4 +1,4 @@
-import { baseUrl, baseUrlGraphql } from "./baseUrl"
+import { baseUrl, baseUrlGraphql } from './baseUrl'
 
 const savedToken = localStorage.getItem('token')
 
@@ -27,5 +27,16 @@ export async function queryFetch(query) {
       },
       method: 'POST',
       body: JSON.stringify({ query: query })
+   }).then(res => res.json())
+}
+
+export async function uploadFetch(formData) {
+   return fetch(baseUrlGraphql, {
+      headers: {
+         // 'Content-Type': 'multipart/form-data',
+         'Authorization': `Bearer ${savedToken}`
+      },
+      method: 'POST',
+      body: formData
    }).then(res => res.json())
 }

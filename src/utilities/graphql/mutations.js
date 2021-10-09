@@ -1,4 +1,4 @@
-import argsGql from "./argsGql"
+import argsGql from './argsGql'
 
 export const loginQuery = (args) => `
 mutation {
