@@ -2,6 +2,7 @@ import FileUpload from 'pages/fileUpload/fileUpload'
 import Home from 'pages/home/home'
 import Login from 'pages/login/login'
 import SignUp from 'pages/signUp/signUp'
+import Test from 'pages/test/test'
 import React from 'react'
 import { Switch, Route, useLocation } from 'react-router-dom'
 import { useTransition, animated } from 'react-spring'
@@ -24,6 +25,7 @@ export default function Router() {
             <Route path="/login" component={Login} />
             <Route path="/sign-up" component={SignUp} />
             <Route path="/file-upload" component={FileUpload} />
+            <Route path="/test" component={Test} />
          </Switch>
       </animated.div>
    )

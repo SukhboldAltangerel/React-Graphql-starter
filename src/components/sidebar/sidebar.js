@@ -1,7 +1,7 @@
 import { Spring, animated } from 'react-spring'
 import React, { useEffect, useState } from 'react'
 import styles from './sidebar.module.css'
-import { HiHome, HiUserCircle, HiUserAdd, HiOutlineLogin, HiOutlineLogout } from 'react-icons/hi'
+import { HiHome, HiUserCircle, HiUserAdd, HiOutlineLogin, HiOutlineLogout, HiOutlineDocumentReport } from 'react-icons/hi'
 import SidebarItem from './sidebarItem'
 import SidebarItemNested from './sidebarItemNested'
 import { useContext } from 'react/cjs/react.development'
@@ -37,6 +37,10 @@ export const sidebarItems = [{
    label: 'Файл хадгалах',
    link: '/file-upload',
    icon: RiFolderUploadFill
+}, {
+   label: 'Тест',
+   link: '/test',
+   icon: HiOutlineDocumentReport
 }]
 
 export default function Sidebar() {
