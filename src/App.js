@@ -14,36 +14,36 @@ import Chat from 'components/chat/chat'
 import UserContext from 'utilities/contexts/user.context'
 
 export default function App() {
-  const themeCtx = useContext(ThemeContext)
-  const userCtx = useContext(UserContext)
+   const themeCtx = useContext(ThemeContext)
+   const userCtx = useContext(UserContext)
 
-  const device = useDeviceWidth()
+   const device = useDeviceWidth()
 
-  const user = userCtx.user
-  const loggedIn = user?.id !== undefined
+   const user = userCtx.user
+   const loggedIn = user?.id !== undefined
 
-  return (
-    <div className={styles.appContainer}>
-      <div className={styles.background} />
-      <LoadingBar />
-      {device === 'desktop' && loggedIn &&
-        <Chat />
-      }
-      <AlertStore>
-        <Alert />
-        <ModalStore>
-          <Modal />
-          <div className={styles.layout}>
-            {device === 'mobile'
-              ? <SideBarMobile />
-              : <Sidebar />
-            }
-            <div className={styles.routeWrapper}>
-              <Router />
-            </div>
-          </div>
-        </ModalStore>
-      </AlertStore>
-    </div>
-  )
+   return (
+      <div className={styles.appContainer}>
+         <div className={styles.background} />
+         <LoadingBar />
+         {device === 'desktop' && loggedIn &&
+            <Chat />
+         }
+         <AlertStore>
+            <Alert />
+            <ModalStore>
+               <Modal />
+               <div className={styles.layout}>
+                  {device === 'mobile'
+                     ? <SideBarMobile />
+                     : <Sidebar />
+                  }
+                  <div className={styles.routeWrapper}>
+                     <Router />
+                  </div>
+               </div>
+            </ModalStore>
+         </AlertStore>
+      </div>
+   )
 }
