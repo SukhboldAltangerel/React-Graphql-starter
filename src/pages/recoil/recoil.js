@@ -1,6 +1,6 @@
 import { Suspense, useState } from 'react'
 import Button from 'components/button/button'
-import styles from './test.module.css'
+import styles from './recoil.module.css'
 import { atomFamily, selectorFamily, useRecoilState, useRecoilStateLoadable, useSetRecoilState } from 'recoil'
 
 const initialCoState = {
@@ -56,7 +56,7 @@ const coStateField = selectorFamily({
    get: ({ id, field }) => ({ get }) => get(coState({ id: id }))[field]
 })
 
-export default function Test() {
+export default function Recoil() {
    const [tab, setTab] = useState(1)
 
    return (
@@ -107,7 +107,6 @@ function Tab1() {
    return (
       <div className="">
          TAB 1
-
          <div className="">
             name: <input value={info.name ?? ''} onChange={e => setterInfo(e.target.value, 'name')} />
             age: <input type="number" value={info.age ?? ''} onChange={e => setterInfo(e.target.value, 'age')} /> years old
@@ -149,7 +148,6 @@ function Tab2() {
    return (
       <div className="">
          TAB 2
-
          <div className="">
             test1: <input value={info.test1 ?? ''} onChange={e => setterInfo(e.target.value, 'test1')} />
             test2: <input value={info.test2 ?? ''} onChange={e => setterInfo(e.target.value, 'test2')} />

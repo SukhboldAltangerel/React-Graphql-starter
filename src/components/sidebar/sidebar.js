@@ -1,13 +1,16 @@
 import { Spring, animated } from 'react-spring'
 import React, { useEffect, useState } from 'react'
 import styles from './sidebar.module.css'
-import { HiHome, HiUserCircle, HiUserAdd, HiOutlineLogin, HiOutlineLogout, HiOutlineDocumentReport } from 'react-icons/hi'
+import { HiHome, HiUserCircle, HiUserAdd, HiOutlineLogin, HiOutlineLogout } from 'react-icons/hi'
 import SidebarItem from './sidebarItem'
 import SidebarItemNested from './sidebarItemNested'
 import { useContext } from 'react/cjs/react.development'
 import UserContext from 'utilities/contexts/user.context'
 import AlertContext from 'utilities/contexts/alert.context'
 import { RiFolderUploadFill } from 'react-icons/ri'
+import { ImSpinner9 } from 'react-icons/im'
+import { GiLouvrePyramid } from 'react-icons/gi'
+import { SiCsswizardry } from 'react-icons/si'
 
 const width = 40
 export const expandedWidth = 180
@@ -38,9 +41,17 @@ export const sidebarItems = [{
    link: '/file-upload',
    icon: RiFolderUploadFill
 }, {
-   label: 'Тест',
-   link: '/test',
-   icon: HiOutlineDocumentReport
+   label: 'Recoil',
+   link: '/recoil',
+   icon: ImSpinner9
+}, {
+   label: 'Three',
+   link: '/three',
+   icon: GiLouvrePyramid
+}, {
+   label: 'Css-doodle',
+   link: '/css-doodle',
+   icon: SiCsswizardry
 }]
 
 export default function Sidebar() {

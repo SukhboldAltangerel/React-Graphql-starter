@@ -2,11 +2,12 @@ import FileUpload from 'pages/fileUpload/fileUpload'
 import Home from 'pages/home/home'
 import Login from 'pages/login/login'
 import SignUp from 'pages/signUp/signUp'
-import Test from 'pages/test/test'
-import React from 'react'
+import Recoil from 'pages/recoil/recoil'
 import { Switch, Route, useLocation } from 'react-router-dom'
 import { useTransition, animated } from 'react-spring'
 import styles from './router.module.css'
+import Three from 'pages/three/three'
+import CssDoodle from 'pages/cssDoodle/cssDoodle'
 
 export default function Router() {
    const location = useLocation()
@@ -25,7 +26,9 @@ export default function Router() {
             <Route path="/login" component={Login} />
             <Route path="/sign-up" component={SignUp} />
             <Route path="/file-upload" component={FileUpload} />
-            <Route path="/test" component={Test} />
+            <Route path="/recoil" component={Recoil} />
+            <Route path="/three" component={Three} />
+            <Route path="/css-doodle" component={CssDoodle} />
          </Switch>
       </animated.div>
    )
