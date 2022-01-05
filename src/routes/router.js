@@ -8,6 +8,7 @@ import { useTransition, animated } from 'react-spring'
 import styles from './router.module.css'
 import Three from 'pages/three/three'
 import CssDoodle from 'pages/cssDoodle/cssDoodle'
+import Zustand from 'pages/zustand/zustand'
 
 export default function Router() {
    const location = useLocation()
@@ -29,6 +30,7 @@ export default function Router() {
             <Route path="/recoil" component={Recoil} />
             <Route path="/three" component={Three} />
             <Route path="/css-doodle" component={CssDoodle} />
+            <Route path="/zustand" component={Zustand} />
          </Switch>
       </animated.div>
    )
