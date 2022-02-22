@@ -52,6 +52,14 @@ export const sidebarItems = [{
    label: 'Css-doodle',
    link: '/css-doodle',
    icon: SiCsswizardry
+}, {
+   label: 'Zustand',
+   link: '/zustand',
+   icon: HiHome
+}, {
+   label: 'Jotai',
+   link: '/jotai',
+   icon: HiHome
 }]
 
 export default function Sidebar() {

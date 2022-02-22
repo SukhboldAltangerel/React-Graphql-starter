@@ -9,6 +9,7 @@ import styles from './router.module.css'
 import Three from 'pages/three/three'
 import CssDoodle from 'pages/cssDoodle/cssDoodle'
 import Zustand from 'pages/zustand/zustand'
+import Jotai from 'pages/jotai/jotai'
 
 export default function Router() {
    const location = useLocation()
@@ -31,6 +32,7 @@ export default function Router() {
             <Route path="/three" component={Three} />
             <Route path="/css-doodle" component={CssDoodle} />
             <Route path="/zustand" component={Zustand} />
+            <Route path="/jotai" component={Jotai} />
          </Switch>
       </animated.div>
    )
