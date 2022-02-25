@@ -27,7 +27,7 @@ export default function Zustand() {
 function Tab1() {
    return (
       <div className="">
-
+         Zustand tab 1
       </div>
    )
 }
@@ -35,7 +35,7 @@ function Tab1() {
 function Tab2() {
    return (
       <div className="">
-
+         Zustand tab 2
       </div>
    )
 }

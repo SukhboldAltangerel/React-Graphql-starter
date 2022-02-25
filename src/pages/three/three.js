@@ -1,7 +1,6 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import styles from './three.module.css'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useState } from 'react/cjs/react.development'
 
 export default function Three() {
    return (
