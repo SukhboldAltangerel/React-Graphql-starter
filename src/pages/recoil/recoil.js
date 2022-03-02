@@ -12,7 +12,7 @@ const initialCoState = {
    check2: null
 }
 
-function delay(ms, value) {
+export function delay(ms, value) {
    return new Promise(resolve => setTimeout(resolve, ms, value))
 }
 
