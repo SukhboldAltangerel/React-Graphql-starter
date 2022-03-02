@@ -11,7 +11,7 @@ const postsAsyncAtom = atom(
 )
 const fetchPostsAsyncAtom = atom(
    null,
-   async (_, set, __) => {
+   async (get, set, args) => {
       const res = await fetch('https://jsonplaceholder.typicode.com/posts')
       const data = await res.json()
       set(postsAsyncAtom, data)
@@ -62,7 +62,7 @@ function Tab1() {
 
 function Tab2() {
    const [string] = useAtom(stringAtom)
-   const [_, refetchPosts] = useAtom(fetchPostsAsyncAtom)
+   const [, refetchPosts] = useAtom(fetchPostsAsyncAtom)
 
    function refetch() {
       refetchPosts()
