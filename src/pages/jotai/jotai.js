@@ -11,10 +11,42 @@ const postsAsyncAtom = atom(
 )
 const fetchPostsAsyncAtom = atom(
    null,
-   async (get, set, args) => {
+   async (get, set) => {
       const res = await fetch('https://jsonplaceholder.typicode.com/posts')
       const data = await res.json()
       set(postsAsyncAtom, data)
+   }
+)
+
+function atomWithRefresh(fn) {
+   const dataAtom = atom()
+   return atom(
+      get => fn(get),
+      (get, set) => set(dataAtom, fn(get))
+   )
+}
+
+const usersAtom = atomWithRefresh(
+   async () => {
+      const res = await fetch('https://jsonplaceholder.typicode.com/users')
+      const data = await res.json()
+      return data
+   }
+)
+
+const fetchAtom = atom(
+   async () => {
+      const res = await fetch('https://jsonplaceholder.typicode.com/users')
+      const data = await res.json()
+      return data
+   }
+)
+const refetchAtom = atom(
+   get => get(fetchAtom),
+   async (get, set, url) => {
+      const res = await fetch(url)
+      const data = await res.json()
+      set(fetchAtom, data)
    }
 )
 
@@ -46,6 +78,7 @@ export default function Jotai() {
 function Tab1() {
    const [string, setString] = useAtom(stringAtom)
    const [posts] = useAtom(postsAsyncAtom)
+   const [users] = useAtom(usersAtom)
 
    return (
       <div className="">
@@ -54,7 +87,10 @@ function Tab1() {
             <input value={string} onChange={e => setString(e.target.value)} />
          </div>
          <div className="">
-            {JSON.stringify(posts)}
+            {JSON.stringify(posts).slice(0, 100)}
+         </div>
+         <div className="">
+            {JSON.stringify(users).slice(0, 100)}
          </div>
       </div>
    )
@@ -63,10 +99,8 @@ function Tab1() {
 function Tab2() {
    const [string] = useAtom(stringAtom)
    const [, refetchPosts] = useAtom(fetchPostsAsyncAtom)
-
-   function refetch() {
-      refetchPosts()
-   }
+   const [, refetchUsers] = useAtom(usersAtom)
+   const [data, fetch] = useAtom(refetchAtom)
 
    return (
       <div className="">
@@ -75,9 +109,18 @@ function Tab2() {
             {string}
          </div>
          <div className="">
-            <button onClick={refetch}>
+            <button onClick={refetchPosts}>
                Refetch posts
             </button>
+         </div>
+         <div className="">
+            <button onClick={refetchUsers}>
+               Refetch users
+            </button>
+         </div>
+         <div className="">
+            {JSON.stringify(data)?.slice(0, 100)}
+            <button onClick={() => fetch('https://jsonplaceholder.typicode.com/users')}>compute</button>
          </div>
       </div>
    )
