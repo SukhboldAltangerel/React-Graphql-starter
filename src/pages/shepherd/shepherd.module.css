@@ -1,0 +1,14 @@
+.gridContainer {
+   padding: 32px;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   column-gap: 20px;
+   row-gap: 100px;
+   justify-items: start;
+   align-items: start;
+}
+
+.iconSlr {
+   width: 40px;
+   height: 40px;
+}

@@ -60,6 +60,10 @@ export const sidebarItems = [{
    label: 'Jotai',
    link: '/jotai',
    icon: HiHome
+}, {
+   label: 'Shepherd',
+   link: '/shepherd',
+   icon: HiHome
 }]
 
 export default function Sidebar() {

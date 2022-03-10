@@ -1,0 +1,7 @@
+.shepherdStep .shepherd-header {
+   padding: 4px !important;
+}
+
+.shepherdStep .shepherd-header .shepherd-title {
+   color: red;
+}
