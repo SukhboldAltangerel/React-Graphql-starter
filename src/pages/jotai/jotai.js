@@ -44,7 +44,7 @@ const fetchAtom = atom(
 const refetchAtom = atom(
    get => get(fetchAtom),
    async (get, set, url) => {
-      const res = await fetch(url)
+      const res = await fetch('https://jsonplaceholder.typicode.com/users')
       const data = await res.json()
       set(fetchAtom, data)
    }
@@ -100,7 +100,7 @@ function Tab2() {
    const [string] = useAtom(stringAtom)
    const [, refetchPosts] = useAtom(fetchPostsAsyncAtom)
    const [, refetchUsers] = useAtom(usersAtom)
-   const [data, fetch] = useAtom(refetchAtom)
+   const [data, refetchData] = useAtom(refetchAtom)
 
    return (
       <div className="">
@@ -120,7 +120,7 @@ function Tab2() {
          </div>
          <div className="">
             {JSON.stringify(data)?.slice(0, 100)}
-            <button onClick={() => fetch('https://jsonplaceholder.typicode.com/users')}>compute</button>
+            <button onClick={refetchData}>compute</button>
          </div>
       </div>
    )
