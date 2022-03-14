@@ -7,6 +7,7 @@ import Recoil from 'pages/recoil/recoil'
 import Shepherd from 'pages/shepherd/shepherd'
 import SignUp from 'pages/signUp/signUp'
 import Three from 'pages/three/three'
+import Visuals from 'pages/visuals/visuals'
 import Zustand from 'pages/zustand/zustand'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { animated, useTransition } from 'react-spring'
@@ -35,6 +36,7 @@ export default function Router() {
             <Route path="/zustand" component={Zustand} />
             <Route path="/jotai" component={Jotai} />
             <Route path="/shepherd" component={Shepherd} />
+            <Route path="/visuals" component={Visuals} />
          </Switch>
       </animated.div>
    )

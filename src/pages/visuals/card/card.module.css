@@ -1,0 +1,20 @@
+.cardContainer {
+   padding: 32px;
+}
+
+.imageContainer {
+   border: 1px solid red;
+   display: inline-block;
+}
+
+.image {
+   transition: transform 150ms;
+   border-radius: 8px;
+   object-fit: cover;
+   width: 300px;
+   height: 400px;
+}
+
+.image:hover {
+   transform: scale(1.05);
+}
