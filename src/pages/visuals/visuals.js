@@ -1,11 +1,13 @@
 import { useMemo, useState } from 'react'
 import Card from './card/card'
+import { Recursive } from './recursive/recursive'
 import Three1 from './three1/three1'
 import styles from './visuals.module.css'
 
 const tabs = [
    Card,
-   Three1
+   Three1,
+   Recursive
 ]
 
 export default function Visuals() {
@@ -16,7 +18,7 @@ export default function Visuals() {
       <div className={styles.visualsContainer}>
          <div className="">
             {tabs.map((_, i) => (
-               <button onClick={() => setTabIndex(i)}>
+               <button onClick={() => setTabIndex(i)} key={i}>
                   tab {i + 1}
                </button>
             ))}
