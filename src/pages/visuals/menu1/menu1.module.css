@@ -1,0 +1,20 @@
+.menuContainer {
+   margin-top: 16px;
+}
+
+.labelsContainer {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.label {
+   padding: 6px 20px;
+   cursor: default;
+   border: 1px dashed cadetblue;
+}
+
+.subMenuContainer {
+   opacity: 0.4;
+}
+
+.subLabel {}
