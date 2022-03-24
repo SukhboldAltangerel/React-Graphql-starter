@@ -50,13 +50,21 @@ export default function Menu1() {
          subMenuItems
       })
       subMenuRef.current.style.display = 'inline-flex'
-      subMenuRef.current.animate([{
-         transform: 'translateY(-20px)',
-         opacity: 0
-      }, {
-         transform: 'translateY(0)',
-         opacity: 1
-      }], {
+
+      console.log(subMenu.open)
+      subMenuRef.current.animate(subMenu.open
+         ? [{
+            left: 0
+         }, {
+            left: 100
+         }]
+         : [{
+            top: 40,
+            opacity: 0
+         }, {
+            top: 20,
+            opacity: 1
+         }], {
          duration: 300,
          fill: 'forwards'
       })
@@ -69,7 +77,7 @@ export default function Menu1() {
          subMenuItems: []
       })
       const hideAnimation = subMenuRef.current.animate([{
-         transform: 'translateY(40px)',
+         top: 40,
          opacity: 0
       }], {
          duration: 300,

@@ -20,8 +20,6 @@
    flex-direction: column;
    box-shadow: 6px 6px 12px gray;
    position: absolute;
-   left: 0;
-   top: 32px;
    border-radius: 3px;
    z-index: 1;
 }
