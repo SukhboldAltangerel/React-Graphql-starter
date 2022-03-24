@@ -1,9 +1,10 @@
 .menuContainer {
    margin-top: 16px;
+   position: relative;
 }
 
 .labelsContainer {
-   display: flex;
+   display: inline-flex;
    flex-wrap: wrap;
 }
 
@@ -15,6 +16,16 @@
 
 .subMenuContainer {
    opacity: 0.4;
+   display: inline-flex;
+   flex-direction: column;
+   box-shadow: 6px 6px 12px gray;
+   position: absolute;
+   left: 0;
+   top: 32px;
+   border-radius: 3px;
+   z-index: 1;
 }
 
-.subLabel {}
+.subLabel {
+   padding: 8px;
+}

@@ -1,5 +1,5 @@
 import styles from './menu1.module.css'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 
 const menuItems = [{
    label: 'Бараа материал',
@@ -41,6 +41,7 @@ const initialSubMenu = {
 export default function Menu1() {
    const [subMenu, setSubMenu] = useState({ ...initialSubMenu })
 
+   const labelsContainerRef = useRef()
    const subMenuRef = useRef()
 
    function showSubMenu(subMenuItems = []) {
@@ -48,39 +49,70 @@ export default function Menu1() {
          open: true,
          subMenuItems
       })
+      subMenuRef.current.style.display = 'inline-flex'
       subMenuRef.current.animate([{
-         // transform: 'translateY(20px)',
-         transform: 'scale(2)',
-         opacity: 1
+         transform: 'translateY(-20px)',
+         opacity: 0
       }, {
+         transform: 'translateY(0)',
+         opacity: 1
+      }], {
          duration: 300,
-         // fill: 'forwards'
-      }])
+         fill: 'forwards'
+      })
+      console.log('showed subMenu')
    }
 
    function hideSubMenu() {
-      setSubMenu({ ...initialSubMenu })
+      setSubMenu({
+         open: false,
+         subMenuItems: []
+      })
+      const hideAnimation = subMenuRef.current.animate([{
+         transform: 'translateY(40px)',
+         opacity: 0
+      }], {
+         duration: 300,
+         fill: 'forwards'
+      })
+      hideAnimation.onfinish = () => {
+         subMenuRef.current.style.display = 'none'
+      }
+      console.log('hide subMenu')
+   }
+
+   function mouseLeaveLabelsContainer(e) {
+      console.log('mouse left labels container')
+      console.log(subMenuRef.current.contains(e.target))
+      if (!subMenuRef.current.contains(e.target)) {
+         hideSubMenu()
+      }
+   }
+
+   function mouseLeaveSubMenu(e) {
+      console.log('mouse left subMenu')
+      console.log(labelsContainerRef.current.contains(e.target))
+      if (!labelsContainerRef.current.contains(e.target)) {
+         hideSubMenu()
+      }
    }
 
    return (
       <div className={styles.menuContainer}>
-         <div className={styles.labelsContainer}>
+         <div className={styles.labelsContainer} ref={labelsContainerRef} onMouseLeave={mouseLeaveLabelsContainer}>
             {menuItems.map((item, i) =>
                <div className={styles.label} key={i} onMouseEnter={() => showSubMenu(item.children)}>
                   {item.label}
                </div>
             )}
          </div>
-         <div className={styles.subMenuContainer} ref={subMenuRef}>
+         <div className={styles.subMenuContainer} ref={subMenuRef} onMouseLeave={mouseLeaveSubMenu}>
             {subMenu.subMenuItems.map((item, i) =>
                <div className={styles.subLabel} key={i}>
                   {item.label}
                </div>
             )}
          </div>
-         <button onClick={hideSubMenu}>
-            Hide sub menu
-         </button>
       </div>
    )
 }

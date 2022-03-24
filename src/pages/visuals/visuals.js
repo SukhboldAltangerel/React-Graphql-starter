@@ -13,7 +13,7 @@ const tabs = [
 ]
 
 export default function Visuals() {
-   const [tabIndex, setTabIndex] = useState(0)
+   const [tabIndex, setTabIndex] = useState(3)
    const TabComponent = useMemo(() => tabs[tabIndex], [tabIndex])
 
    return (
