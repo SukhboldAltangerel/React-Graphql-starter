@@ -1,6 +1,7 @@
 .menuContainer {
    margin-top: 16px;
    position: relative;
+   display: inline-block;
 }
 
 .labelsContainer {
