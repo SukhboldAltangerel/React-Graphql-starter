@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import Card from './card/card'
+import Count from './count/count'
 import Menu1 from './menu1/menu1'
 import { Recursive } from './recursive/recursive'
 import Three1 from './three1/three1'
@@ -9,7 +10,8 @@ const tabs = [
    Card,
    Three1,
    Recursive,
-   Menu1
+   Menu1,
+   Count
 ]
 
 export default function Visuals() {
