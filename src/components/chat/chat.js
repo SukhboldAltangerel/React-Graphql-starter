@@ -83,7 +83,7 @@ export default function Chat() {
          query: chatSub,
       }, {
          next: data => {
-            setChat(prev => [...prev, data.data?.chatSub])
+            setChat((prev = []) => [...prev, data.data?.chatSub])
             chatSectionRef.current && chatSectionRef.current.scrollBy({
                top: 46,
                behavior: 'smooth'
